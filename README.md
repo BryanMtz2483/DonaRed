@@ -5,7 +5,6 @@
 [![Laravel](https://img.shields.io/badge/Laravel-13.0-red.svg?style=flat-square)](https://laravel.com)
 [![Livewire](https://img.shields.io/badge/Livewire-4.1-blue.svg?style=flat-square)](https://livewire.laravel.com)
 [![PHP](https://img.shields.io/badge/PHP-8.3%2B-purple.svg?style=flat-square)](https://www.php.net)
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
 
 ---
 
@@ -117,7 +116,7 @@ php artisan db:seed --class=DonationSeeder
 
 ### 4. Inicia Servidor
 ```bash
-php artisan serve
+php artisan serve, aunue recomiendo más "composer run dev"
 ```
 
 Abre: **http://localhost:8000** ✅
