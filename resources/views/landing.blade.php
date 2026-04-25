@@ -83,7 +83,7 @@
                 <a href="#donaciones-destacadas" class="btn-primary-lg">
                     Ver Donaciones 🎁
                 </a>
-                <a href="#" class="btn-secondary px-8 py-4 text-lg rounded-lg">
+                <a href="{{ route('login') }}" class="btn-secondary px-8 py-4 text-lg rounded-lg">
                     Solicitar Ayuda 🤝
                 </a>
             </div>
@@ -330,9 +330,6 @@
                 @else
                     <a href="{{ route('register') }}" class="btn-primary-lg text-black bg-white">
                         Empezar a Donar 🎁
-                    </a>
-                    <a href="{{ route('register') }}" class="bg-white/20 backdrop-blur text-white font-bold py-4 px-8 rounded-lg hover:bg-white/30 transition-all border border-white/50">
-                        Necesito Ayuda 🤝
                     </a>
                 @endauth
             </div>

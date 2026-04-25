@@ -23,7 +23,7 @@
                     <a href="{{ route('donations.list') }}" class="btn-secondary px-6 py-3 rounded-lg">
                         📦 Explorar Donaciones
                     </a>
-                    <a href="#" class="btn-primary px-6 py-3 rounded-lg">
+                    <a href="{{ route('donations.list', ['create' => 'true']) }}" class="btn-primary px-6 py-3 rounded-lg">
                         ➕ Nueva Donación
                     </a>
                 </div>

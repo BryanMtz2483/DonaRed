@@ -14,6 +14,16 @@ class CrearDonacion extends Component
 
     protected $listeners = ['openForm' => '$refresh'];
 
+    /**
+     * Inicializar componente - abrir formulario si viene con parámetro create=true
+     */
+    public function mount()
+    {
+        if (request()->query('create') === 'true') {
+            $this->showForm = true;
+        }
+    }
+
     protected array $rules = [
         'titulo' => 'required|string|min:3|max:100',
         'descripcion' => 'required|string|min:10|max:1000',

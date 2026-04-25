@@ -1,10 +1,15 @@
 <div class="w-full pb-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
     <!-- Header Hero -->
-    <div class="mb-12">
-        <h1 class="text-hero mb-3 animate-fade-in text-black!">🎁 Donaciones Disponibles</h1>
-        <p class="text-subtitle text-zinc-700! dark:text-zinc-700! mb-6 max-w-2xl">
-            Descubre las donaciones increíbles de tu comunidad. Cada artículo es una oportunidad para cambiar una vida.
-        </p>
+    <div class="mb-12 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div class="flex-1">
+            <h1 class="text-hero mb-3 animate-fade-in text-black!">🎁 Donaciones Disponibles</h1>
+            <p class="text-subtitle text-zinc-700! dark:text-zinc-700! max-w-2xl">
+                Descubre las donaciones increíbles de tu comunidad. Cada artículo es una oportunidad para cambiar una vida.
+            </p>
+        </div>
+        <div class="shrink-0">
+            <livewire:donations.crear-donacion />
+        </div>
     </div>
 
     <!-- Buscador y Filtros Mejorados -->
