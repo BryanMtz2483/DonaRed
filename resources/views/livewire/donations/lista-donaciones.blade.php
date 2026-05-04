@@ -157,7 +157,7 @@
                                 @if (auth()->check())
                                     @if ($donation->user_id === auth()->id())
                                         <div class="px-4 py-2 bg-zinc-100 dark:bg-zinc-700 rounded-lg text-center">
-                                            <p class="text-xs font-semibold text-zinc-600 dark:text-white">✓ Es tu Donación</p>
+                                            <p class="text-sm font-semibold text-zinc-600 dark:text-white">✓ Es tu Donación</p>
                                         </div>
                                     @else
                                         <livewire:donations.solicitar-donacion :donation="$donation" :key="'solicitar-' . $donation->id . '-' . time()" />

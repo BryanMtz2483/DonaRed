@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LandingPageController;
-use App\Http\Controllers\DashboardController;
+use App\Livewire\Dashboard;
 
 // Landing page pública
 Route::get('/', [LandingPageController::class, 'index'])->name('landing');
@@ -11,7 +11,7 @@ Route::get('/', [LandingPageController::class, 'index'])->name('landing');
 Route::view('/welcome', 'landing')->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('dashboard', Dashboard::class)->name('dashboard');
 
     // Rutas de Donaciones
     Route::prefix('donaciones')->group(function () {

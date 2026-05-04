@@ -4,8 +4,8 @@
             Iniciar Sesión
         </a>
     @elseif ($isOwner)
-        <div class="px-4 py-2 bg-zinc-100 dark:bg-zinc-700/50 rounded-lg text-center">
-            <p class="text-xs font-semibold text-zinc-600 dark:text-zinc-400">✓ Tu Donación</p>
+        <div class="px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-lg text-center shadow-lg">
+            <p class="text-sm sm:text-base font-bold text-white">👑 Tu Donación</p>
         </div>
     @else
         @php

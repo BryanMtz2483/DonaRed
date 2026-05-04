@@ -1,4 +1,4 @@
-<x-layouts::app.navbar>
+<div>
     <!-- GREETING SECTION -->
     <section class="relative py-8 md:py-12 px-0 border-b border-red-200/30 overflow-hidden bg-gradient-to-b from-white via-orange-50 to-yellow-50">
         <!-- Animated background elements -->
@@ -18,7 +18,7 @@
                         Bienvenido de vuelta a DonaRed
                     </p>
                 </div>
-                
+
                 <div class="flex gap-3">
                     <a href="{{ route('donations.list') }}" class="btn-secondary px-6 py-3 rounded-lg">
                         📦 Explorar Donaciones
@@ -35,7 +35,7 @@
     <section class="py-12 md:py-16 px-0 bg-white">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-section mb-8 animate-fade-in text-black!">Mi Impacto</h2>
-            
+
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Mi Donaciones -->
                 <div class="card-glass-lg hover-lift animate-scale-in">
@@ -61,7 +61,7 @@
                 <h2 class="text-section text-black!">Mis Donaciones Activas</h2>
                 <a href="{{ route('donations.list') }}" class="text-red-500 font-semibold hover:text-red-600 transition">Ver Todas</a>
             </div>
-            
+
             @if ($myDonations->isEmpty())
                 <div class="card-glass-lg text-center py-16">
                     <div class="text-6xl mb-4">🎁</div>
@@ -75,9 +75,9 @@
                 <div class="space-y-4">
                     @foreach ($myDonations as $donation)
                         <div class="card-glass p-6 hover-lift animate-slide-up">
-                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                                <div class="flex-1">
-                                    <div class="flex items-center gap-3 mb-2">
+                            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex items-center gap-3 mb-2 flex-wrap">
                                         <h3 class="text-xl font-bold text-zinc-900">{{ $donation->titulo }}</h3>
                                         @if ($donation->estado === 'disponible')
                                             <span class="badge-success">Disponible</span>
@@ -87,11 +87,11 @@
                                             <span class="badge-danger">Entregada</span>
                                         @endif
                                     </div>
-                                    <p class="text-body text-zinc-600 mb-2">
-                                        {{ Str::limit($donation->descripcion, 100) }}
+                                    <p class="text-body text-zinc-600 mb-2 line-clamp-2">
+                                        {{ $donation->descripcion }}
                                     </p>
                                     <div class="flex gap-4 text-sm text-zinc-500">
-                                        <span>📍 
+                                        <span>📍
                                             @switch($donation->tipo)
                                                 @case('comida')
                                                     Comida
@@ -110,9 +110,19 @@
                                         <span>👁️ {{ $donation->requests->count() }} solicitud(es)</span>
                                     </div>
                                 </div>
-                                <div class="flex gap-2">
-                                    <button class="btn-secondary px-4 py-2 text-sm rounded-lg">Editar</button>
-                                    <button class="btn-accent px-4 py-2 text-sm rounded-lg">Detalles</button>
+                                <div class="flex flex-row gap-2 shrink-0">
+                                    <button
+                                        wire:click="openEditModal({{ $donation->id }})"
+                                        class="btn-secondary px-4 py-2 text-sm rounded-lg whitespace-nowrap"
+                                    >
+                                        ✏️ Editar
+                                    </button>
+                                    <button
+                                        wire:click="openDonationModal({{ $donation->id }})"
+                                        class="btn-accent px-4 py-2 text-sm rounded-lg whitespace-nowrap"
+                                    >
+                                        👁️ Detalles
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -226,7 +236,7 @@
             <h3 class="text-2xl md:text-3xl font-bold text-white mb-8">
                 Tu Comunidad en Números
             </h3>
-            
+
             <div class="grid sm:grid-cols-4 gap-6">
                 <div>
                     <p class="text-4xl font-bold text-white counter">342</p>
@@ -248,5 +258,14 @@
         </div>
     </section>
 
-</x-layouts::app.navbar>
+    <!-- Modal para ver donación -->
+    @if ($selectedDonation)
+        <livewire:donations.ver-donacion :donation="$selectedDonation" :key="'dashboard-ver-donacion-' . $selectedDonation->id" />
+    @endif
 
+    <!-- Modal para editar donación -->
+    @if ($editingDonation)
+        <livewire:donations.editar-donacion :donation="$editingDonation" :key="'dashboard-edit-donacion-' . $editingDonation->id" />
+    @endif
+
+</div>

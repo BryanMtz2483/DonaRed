@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="overflow-x-hidden">
     <head>
         @include('partials.head')
     </head>
-    <body class="min-h-screen bg-gradient-to-b from-white via-orange-50 to-yellow-50">
+    <body class="min-h-screen bg-gradient-to-b from-white via-orange-50 to-yellow-50 overflow-x-hidden">
         <!-- Animated background elements -->
         <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
             <div class="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-b from-red-500/20 to-transparent rounded-full blur-3xl animate-float"></div>
@@ -12,7 +12,7 @@
         </div>
 
         <!-- NAVBAR -->
-        <nav class="sticky top-0 z-50 glass backdrop-blur-md bg-white/70 border-b border-red-200/30">
+        <nav class="sticky top-0 z-50 bg-white border-b border-red-200/30">
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between items-center h-16 md:h-20">
                     <!-- Logo -->
@@ -27,16 +27,16 @@
 
                     <!-- Desktop Navigation -->
                     <div class="hidden md:flex items-center gap-8">
-                        <a href="{{ route('dashboard') }}" wire:navigate class="flex items-center gap-2 text-zinc-700 hover:text-red-500 transition font-medium {{ request()->routeIs('dashboard') ? 'text-red-500' : '' }}">
+                        <a href="{{ route('dashboard') }}" wire:navigate class="flex items-center gap-2 text-black hover:text-red-600 transition font-medium {{ request()->routeIs('dashboard') ? 'text-red-600' : '' }}">
                             🏠 Dashboard
                         </a>
-                        <a href="{{ route('donations.list') }}" wire:navigate class="flex items-center gap-2 text-zinc-700 hover:text-green-500 transition font-medium {{ request()->routeIs('donations.list') ? 'text-green-500' : '' }}">
+                        <a href="{{ route('donations.list') }}" wire:navigate class="flex items-center gap-2 text-black hover:text-green-600 transition font-medium {{ request()->routeIs('donations.list') ? 'text-green-600' : '' }}">
                             🎁 Donaciones
                         </a>
-                        <a href="{{ route('donations.manage') }}" wire:navigate class="flex items-center gap-2 text-zinc-700 hover:text-yellow-500 transition font-medium {{ request()->routeIs('donations.manage') ? 'text-yellow-500' : '' }}">
+                        <a href="{{ route('donations.manage') }}" wire:navigate class="flex items-center gap-2 text-black hover:text-yellow-600 transition font-medium {{ request()->routeIs('donations.manage') ? 'text-yellow-600' : '' }}">
                             📋 Solicitudes
                         </a>
-                        <a href="{{ route('donations.history') }}" wire:navigate class="flex items-center gap-2 text-zinc-700 hover:text-red-500 transition font-medium {{ request()->routeIs('donations.history') ? 'text-red-500' : '' }}">
+                        <a href="{{ route('donations.history') }}" wire:navigate class="flex items-center gap-2 text-black hover:text-red-600 transition font-medium {{ request()->routeIs('donations.history') ? 'text-red-600' : '' }}">
                             📊 Historial
                         </a>
                     </div>
@@ -49,16 +49,17 @@
                                 :name="auth()->user()->name"
                                 :initials="auth()->user()->initials()"
                                 icon-trailing="chevron-down"
+                                class="[&_span]:text-black! [&_div]:text-black! [&_span]:hover:text-black! [&_div]:hover:text-black!"
                             />
 
-                            <flux:menu>
-                                <div class="px-3 py-2 text-sm">
-                                    <p class="font-semibold text-zinc-900">{{ auth()->user()->name }}</p>
-                                    <p class="text-xs text-zinc-600">{{ auth()->user()->email }}</p>
+                            <flux:menu class="!bg-white border border-zinc-200 shadow-lg rounded-lg overflow-hidden">
+                                <div class="px-4 py-3 text-sm bg-white border-b border-zinc-100">
+                                    <p class="font-semibold text-black">{{ auth()->user()->name }}</p>
+                                    <p class="text-xs text-black">{{ auth()->user()->email }}</p>
                                 </div>
                                 <flux:menu.separator />
-                                <flux:menu.item :href="route('profile.edit')" icon="cog" wire:navigate>
-                                    ⚙️ Configuración
+                                <flux:menu.item :href="route('profile.edit')" icon="cog" wire:navigate class="hover:bg-red-50">
+                                    <span class="text-black">⚙️ Configuración</span>
                                 </flux:menu.item>
                                 <flux:menu.separator />
                                 <form method="POST" action="{{ route('logout') }}" class="w-full">
@@ -67,9 +68,9 @@
                                         as="button"
                                         type="submit"
                                         icon="arrow-right-start-on-rectangle"
-                                        class="w-full cursor-pointer text-red-600 hover:bg-red-50"
+                                        class="w-full cursor-pointer hover:bg-red-50"
                                     >
-                                        🚪 Cerrar Sesión
+                                        <span class="text-black">🚪 Cerrar Sesión</span>
                                     </flux:menu.item>
                                 </form>
                             </flux:menu>
@@ -78,26 +79,26 @@
                         <!-- Mobile Menu Button -->
                         <flux:dropdown position="bottom" align="end" class="md:hidden">
                             <button class="p-2 rounded-lg hover:bg-red-100 transition">
-                                <svg class="w-6 h-6 text-zinc-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                                 </svg>
                             </button>
 
-                            <flux:menu class="w-48">
-                                <flux:menu.item :href="route('dashboard')" icon="home" wire:navigate>
+                            <flux:menu class="w-48 bg-white border border-zinc-200 shadow-lg">
+                                <flux:menu.item :href="route('dashboard')" icon="home" wire:navigate class="text-black hover:bg-zinc-100">
                                     🏠 Dashboard
                                 </flux:menu.item>
-                                <flux:menu.item :href="route('donations.list')" icon="gift" wire:navigate>
+                                <flux:menu.item :href="route('donations.list')" icon="gift" wire:navigate class="text-black hover:bg-zinc-100">
                                     🎁 Donaciones
                                 </flux:menu.item>
-                                <flux:menu.item :href="route('donations.manage')" icon="inbox" wire:navigate>
+                                <flux:menu.item :href="route('donations.manage')" icon="inbox" wire:navigate class="text-black hover:bg-zinc-100">
                                     📋 Solicitudes
                                 </flux:menu.item>
-                                <flux:menu.item :href="route('donations.history')" icon="user" wire:navigate>
+                                <flux:menu.item :href="route('donations.history')" icon="user" wire:navigate class="text-black hover:bg-zinc-100">
                                     📊 Historial
                                 </flux:menu.item>
                                 <flux:menu.separator />
-                                <flux:menu.item :href="route('profile.edit')" icon="cog" wire:navigate>
+                                <flux:menu.item :href="route('profile.edit')" icon="cog" wire:navigate class="text-black hover:bg-zinc-100">
                                     ⚙️ Configuración
                                 </flux:menu.item>
                                 <flux:menu.separator />
@@ -119,7 +120,7 @@
         </nav>
 
         <!-- Main Content -->
-        <div class="relative z-10 w-full">
+        <div class="relative z-10 w-full overflow-x-hidden">
             {{ $slot }}
         </div>
 
